@@ -113,3 +113,32 @@ app.post('/api/auth/login', async (req, res) => {
         return res.status(500).json({ error: "Server error during login." });
     }
 });
+
+// Log a New Stock Transaction
+app.post('/api/transactions', async (req, res) => {
+    const { user_id, ticker, type, quantity, price, transaction_date } = req.body;
+
+    // Basic input validation
+    if (!user_id || !ticker || !type || !quantity || !price || !transaction_date) {
+        return res.status(400).json({ error: "All transaction fields are required." });
+    }
+
+    try {
+        // Insert trade into PostgreSQL transactions table
+        const newTransaction = await pool.query(
+            `INSERT INTO transactions (user_id, ticker, type, quantity, price, transaction_date) 
+             VALUES ($1, $2, $3, $4, $5, $6) 
+             RETURNING *`,
+            [user_id, ticker.toUpperCase(), type.toUpperCase(), quantity, price, transaction_date]
+        );
+
+        return res.status(201).json({
+            message: "Transaction logged successfully!",
+            transaction: newTransaction.rows[0]
+        });
+
+    } catch (err) {
+        console.error("Transaction logging error:", err);
+        return res.status(500).json({ error: "Server error while saving transaction." });
+    }
+});
