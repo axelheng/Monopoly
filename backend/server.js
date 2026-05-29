@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg'); 
@@ -5,7 +6,7 @@ const bcrypt = require('bcrypt');
 require('dotenv').config();    // Load variables from .env file
 
 const app = express();
-const PORT = 8080;
+const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
