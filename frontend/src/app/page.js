@@ -26,7 +26,7 @@ export default function Home() {
     const endpoint = isLoginMode ? "/api/auth/login" : "/api/auth/register";
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000${endpoint}`, {
+      const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -58,7 +58,7 @@ export default function Home() {
     setIsTradeError(false);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/transactions", {
+      const response = await fetch("/api/transactions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
