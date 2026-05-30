@@ -1,4 +1,11 @@
 export async function POST(request) {
-  const body = await request.json();
-  return Response.json({ message: "login route works", body });
+  const { email } = await request.json();
+
+  return Response.json({
+    message: "Login successful!",
+    user: {
+      id: 1,
+      email: email,
+    },
+  });
 }
