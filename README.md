@@ -1,5 +1,8 @@
 # Stock Trading Web Application
 
+## Link to deployed site
+https://monopoly-theta-seven.vercel.app/
+
 ## Overview
 
 This project is a full-stack stock trading web application that allows users to create accounts, securely log in, and record stock buy/sell transactions. The application provides a simple and user-friendly interface for managing investment activities while storing user and transaction data in a cloud-hosted PostgreSQL database.
